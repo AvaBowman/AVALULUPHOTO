@@ -19,8 +19,8 @@
       --radius:18px;
       --shadow:0 12px 40px rgba(40,30,20,.06);
 
-      /* header offset for anchor scroll */
-      --header-offset: 96px;
+      /* Will be updated by JS to match header height */
+      --header-offset: 120px;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -28,27 +28,50 @@
     body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
     a{text-decoration:none;color:inherit}
 
-    html { scroll-behavior: smooth; }
+    /* Smooth scroll + global anchor cushion */
+    html{
+      scroll-behavior:smooth;
+      scroll-padding-top: var(--header-offset);
+    }
 
-    .container{width:min(1100px,92%);margin-inline:auto}
+    .container{width:min(1100px,92%);margin-inline:auto} /* no global side padding */
 
-    /* Make anchored sections stop below header */
-    section[id] { scroll-margin-top: var(--header-offset); }
-    @media (max-width:600px){
-      :root { --header-offset: 120px; }
+    /* Anchor offset (triple coverage for iOS Safari) */
+    section[id]{
+      position:relative;
+      scroll-margin-top: var(--header-offset);
+    }
+    section[id]::before{
+      content:"";
+      display:block;
+      height:var(--header-offset);                 /* creates cushion */
+      margin-top:calc(var(--header-offset) * -1);  /* cancels layout shift */
+      visibility:hidden;
+      pointer-events:none;
     }
 
     /* Header */
-    header{display:flex;justify-content:space-between;align-items:center;padding:16px 5%;position:fixed;top:0;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);z-index:999}
+    header{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:16px 5%;
+      position:fixed;top:0;left:0;right:0;
+      background:var(--paper);
+      border-bottom:1px solid var(--line);
+      z-index:999;
+    }
     header img{height:48px;width:auto;margin-left:-10px;}
     .menu-toggle{cursor:pointer;display:flex;flex-direction:column;gap:6px}
     .menu-toggle span{display:block;width:26px;height:3px;background:var(--ink);border-radius:3px}
-    nav{display:none;position:absolute;top:64px;right:5%;background:var(--sheet);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px}
+    nav{
+      display:none;position:absolute;top:64px;right:5%;
+      background:var(--sheet);border:1px solid var(--line);border-radius:var(--radius);
+      box-shadow:var(--shadow);padding:12px
+    }
     nav a{display:block;padding:10px 14px;font-weight:600}
     nav a:hover{background:var(--pill)}
 
     /* Hero with big name */
-    .hero{padding:110px 0 40px;text-align:center} /* adjusted top padding */
+    .hero{padding:110px 0 40px;text-align:center} /* moved title up a bit */
     .hero h1{font-size:clamp(2.8rem,6vw,4.2rem);margin:0;color:var(--ink);font-weight:800;letter-spacing:1px;text-transform:uppercase}
     .hero p{color:var(--muted);margin:12px auto 24px;max-width:650px;font-size:1.15rem}
     .hero .cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
@@ -65,9 +88,8 @@
     section{padding:64px 0}
     .title{font-size:1.6rem;text-align:center;margin-bottom:6px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
     .sub{text-align:center;color:var(--muted);margin:0 0 36px}
-    @media (max-width:600px){
-      .sub{padding-inline:20px;}
-    }
+    /* Only cushion this body subtext on phones */
+    @media (max-width:600px){ .sub{padding-inline:20px;} }
 
     /* Pricing grid */
     .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
@@ -83,13 +105,8 @@
     .about{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
     .about .bio{background:var(--sheet);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
     .about .pic{
-      border-radius:var(--radius);
-      overflow:hidden;
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-      max-width:85%;
-      margin:auto;
-      aspect-ratio: 4/5;
+      border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);
+      max-width:85%;margin:auto;aspect-ratio:4/5;
     }
     .about img{width:100%;height:100%;object-fit:cover;display:block}
     @media (max-width:900px){.about{grid-template-columns:1fr}}
@@ -239,12 +256,8 @@
     document.getElementById('yr').textContent = new Date().getFullYear();
 
     // Always reset scroll to top on reload
-    window.onbeforeunload = function () {
-      window.scrollTo(0, 0);
-    };
-    window.onload = function () {
-      window.scrollTo(0, 0);
-    };
+    window.onbeforeunload = function () { window.scrollTo(0, 0); };
+    window.onload = function () { window.scrollTo(0, 0); };
 
     // Close nav dropdown after clicking a link
     document.querySelectorAll('nav a').forEach(a => {
@@ -252,6 +265,19 @@
         document.querySelector('nav').style.display = 'none';
       });
     });
+
+    // Dynamically set --header-offset based on actual header height (+ buffer)
+    function setHeaderOffset(){
+      const header = document.querySelector('header');
+      if (!header) return;
+      const buffer = 16; // little breathing room
+      const offset = header.offsetHeight + buffer;
+      document.documentElement.style.setProperty('--header-offset', offset + 'px');
+    }
+    window.addEventListener('load', setHeaderOffset);
+    window.addEventListener('resize', setHeaderOffset);
+    // iOS Safari sometimes changes header height on scroll; refresh after a tick
+    window.addEventListener('orientationchange', () => setTimeout(setHeaderOffset, 300));
   </script>
 </body>
 </html>
