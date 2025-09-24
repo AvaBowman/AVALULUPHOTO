@@ -186,7 +186,6 @@
       <span class="chip">Second location</span>
       <span class="chip">Additional outfits</span>
       <span class="chip">Film photography</span>
-
     </div>
   </section>
 
@@ -235,7 +234,16 @@
   </footer>
 
   <script>
+    // Update footer year
     document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Always reset scroll to top on reload
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
+    window.onload = function () {
+      window.scrollTo(0, 0);
+    };
   </script>
 </body>
 </html>
