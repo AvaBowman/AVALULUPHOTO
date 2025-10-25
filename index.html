@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ava Lulu Photo</title>
+  <title>Ava Bowman</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
@@ -18,60 +18,24 @@
       --pill:#EFE8E2;
       --radius:18px;
       --shadow:0 12px 40px rgba(40,30,20,.06);
-
-      /* Will be updated by JS to match header height */
-      --header-offset: 120px;
     }
-
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{background:var(--paper);color:var(--ink)}
     body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
     a{text-decoration:none;color:inherit}
-
-    /* Smooth scroll + global anchor cushion */
-    html{
-      scroll-behavior:smooth;
-      scroll-padding-top: var(--header-offset);
-    }
-
-    .container{width:min(1100px,92%);margin-inline:auto} /* no global side padding */
-
-    /* Anchor offset (triple coverage for iOS Safari) */
-    section[id]{
-      position:relative;
-      scroll-margin-top: var(--header-offset);
-    }
-    section[id]::before{
-      content:"";
-      display:block;
-      height:var(--header-offset);                 /* creates cushion */
-      margin-top:calc(var(--header-offset) * -1);  /* cancels layout shift */
-      visibility:hidden;
-      pointer-events:none;
-    }
+    .container{width:min(1100px,92%);margin-inline:auto}
 
     /* Header */
-    header{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:16px 5%;
-      position:fixed;top:0;left:0;right:0;
-      background:var(--paper);
-      border-bottom:1px solid var(--line);
-      z-index:999;
-    }
+    header{display:flex;justify-content:space-between;align-items:center;padding:16px 5%;position:fixed;top:0;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);z-index:999}
     header img{height:48px;width:auto;margin-left:-10px;}
     .menu-toggle{cursor:pointer;display:flex;flex-direction:column;gap:6px}
     .menu-toggle span{display:block;width:26px;height:3px;background:var(--ink);border-radius:3px}
-    nav{
-      display:none;position:absolute;top:64px;right:5%;
-      background:var(--sheet);border:1px solid var(--line);border-radius:var(--radius);
-      box-shadow:var(--shadow);padding:12px
-    }
+    nav{display:none;position:absolute;top:64px;right:5%;background:var(--sheet);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px}
     nav a{display:block;padding:10px 14px;font-weight:600}
     nav a:hover{background:var(--pill)}
 
     /* Hero with big name */
-    .hero{padding:110px 0 40px;text-align:center} /* moved title up a bit */
+    .hero{padding:140px 0 40px;text-align:center}
     .hero h1{font-size:clamp(2.8rem,6vw,4.2rem);margin:0;color:var(--ink);font-weight:800;letter-spacing:1px;text-transform:uppercase}
     .hero p{color:var(--muted);margin:12px auto 24px;max-width:650px;font-size:1.15rem}
     .hero .cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
@@ -88,8 +52,6 @@
     section{padding:64px 0}
     .title{font-size:1.6rem;text-align:center;margin-bottom:6px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
     .sub{text-align:center;color:var(--muted);margin:0 0 36px}
-    /* Only cushion this body subtext on phones */
-    @media (max-width:600px){ .sub{padding-inline:20px;} }
 
     /* Pricing grid */
     .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
@@ -105,10 +67,20 @@
     .about{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
     .about .bio{background:var(--sheet);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
     .about .pic{
-      border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);
-      max-width:85%;margin:auto;aspect-ratio:4/5;
+      border-radius:var(--radius);
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      max-width:85%;
+      margin:auto;
+      aspect-ratio: 4/5; /* consistent portrait frame */
     }
-    .about img{width:100%;height:100%;object-fit:cover;display:block}
+    .about img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
     @media (max-width:900px){.about{grid-template-columns:1fr}}
 
     /* Gallery */
@@ -117,12 +89,20 @@
 
     footer{padding:28px 0;border-top:1px solid var(--line);text-align:center;color:var(--muted)}
 
-    /* Chips */
+    /* Chips (existing) */
     .chip{background:var(--pill);padding:8px 12px;border-radius:999px;font-weight:700;margin:4px;display:inline-block}
 
-    /* Add Ons */
+    /* Add Ons: compact pill layout */
     #addons .sub{margin-bottom:18px}
-    .addon-chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;max-width:900px;margin:0 auto}
+    .addon-chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:center;
+      align-items:center;
+      max-width:900px;
+      margin:0 auto;
+    }
   </style>
 </head>
 <body>
@@ -130,7 +110,9 @@
   <header>
     <img src="artist chop.png" alt="Ava Lulu logo" />
     <div class="menu-toggle" onclick="document.querySelector('nav').style.display = document.querySelector('nav').style.display === 'block' ? 'none' : 'block'">
-      <span></span><span></span><span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
     <nav>
       <a href="#pricing">PRICING</a>
@@ -161,7 +143,7 @@
   <!-- Pricing -->
   <section id="pricing">
     <h2 class="title">Pricing</h2>
-    <p class="sub">Each session comes with professional editing and a gallery of high-resolution images.</p>
+    <p class="sub">Each session includes editing and a gallery of high-resolution images.</p>
     <div class="container price-grid">
       <article class="block">
         <div class="head"><h3 class="pkg">Individual</h3><div class="amount">$85</div></div>
@@ -191,13 +173,23 @@
           <li>50 digital photos</li>
         </ul>
       </article>
+      <article class="block">
+        <div class="head"><h3 class="pkg">wedding</h3><div class="amount">$TBD</div></div>
+        <hr>
+        <ul>
+          <li>Message me for my wedding packages</li>
+          <li>Engagements</li>
+          <li>Bridals</li>
+          <li>Wedding day</li>
+        </ul>
+      </article>
     </div>
   </section>
 
-  <!-- Add Ons -->
+  <!-- Add Ons (chip layout) -->
   <section id="addons">
     <h2 class="title">Add Ons</h2>
-    <p class="sub">Message me with inquiries about adding or selecting any of the following options</p>
+    <p class="sub">Message me with inquires about adding or selecting any of the following options</p>
     <div class="container addon-chips">
       <span class="chip">Extra time</span>
       <span class="chip">Dance photos</span>
@@ -225,12 +217,19 @@
     <h2 class="title">Gallery</h2>
     <p class="sub">Some moments I’ve captured</p>
     <div class="container gallery-grid">
+      <img src="electraXrob.jpeg" alt="photo of electra and rob">
+      <img src="melaniewedding.jpeg" alt="photo of melanies wedding tables">
+      <img src="konXwav.jpeg" alt="photo of konnor and wav infront of their house">
+      <img src="leaningtowerofpisa.jpeg" alt="leaning tower of pisa">
+      <img src="weddingfilm.jpeg" alt="mel and sam">
+      <img src="flagfootball.jpeg" alt="flag fotball catch">
       <img src="avacochran241003-0300-2.jpeg" alt="Mercedes emblem photo">
       <img src="acochran241013-0376.jpeg" alt="Bright bouquet of flowers against blue sky">
       <img src="avacochran250208-111_1133-2.jpg" alt="Group of friends dressed up at event">
       <img src="111.AvaLulu-64.jpg" alt="Portrait of a young woman in a field">
       <img src="avacochran241111-111_0988.jpg" alt="Black and white portrait of woman with camera">
       <img src="111.AvaLulu-81.jpg" alt="Portrait of a young woman with mountains in the background">
+
     </div>
   </section>
 
@@ -238,10 +237,10 @@
   <section id="contact">
     <h2 class="title">Contact</h2>
     <p class="sub">Click below to reach out through email or Instagram<br>
-      Let me know which of the packages or add ons you're inquiring about, or with any other questions!<br>
-      &amp; I will get back to you as soon as possible!</p>
+      Let me know what kind of package you're inquiring about!<br>
+      & I will get back to you as soon as possible!</p>
     <div class="container" style="text-align:center; display:flex; flex-direction:column; gap:16px; align-items:center">
-      <a class="btn primary" href="mailto:Avaluluphoto@gmail.com">Email: Avaluluphoto@gmail.com</a>
+      <a class="btn primary" href="mailto:Avalulu88@gmail.com">Email: Avalulu88@gmail.com</a>
       <a class="btn secondary" href="https://instagram.com/avalulubowman" target="_blank">Instagram: @avalulubowman</a>
     </div>
   </section>
@@ -256,28 +255,12 @@
     document.getElementById('yr').textContent = new Date().getFullYear();
 
     // Always reset scroll to top on reload
-    window.onbeforeunload = function () { window.scrollTo(0, 0); };
-    window.onload = function () { window.scrollTo(0, 0); };
-
-    // Close nav dropdown after clicking a link
-    document.querySelectorAll('nav a').forEach(a => {
-      a.addEventListener('click', () => {
-        document.querySelector('nav').style.display = 'none';
-      });
-    });
-
-    // Dynamically set --header-offset based on actual header height (+ buffer)
-    function setHeaderOffset(){
-      const header = document.querySelector('header');
-      if (!header) return;
-      const buffer = 16; // little breathing room
-      const offset = header.offsetHeight + buffer;
-      document.documentElement.style.setProperty('--header-offset', offset + 'px');
-    }
-    window.addEventListener('load', setHeaderOffset);
-    window.addEventListener('resize', setHeaderOffset);
-    // iOS Safari sometimes changes header height on scroll; refresh after a tick
-    window.addEventListener('orientationchange', () => setTimeout(setHeaderOffset, 300));
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
+    window.onload = function () {
+      window.scrollTo(0, 0);
+    };
   </script>
 </body>
 </html>
