@@ -4,14 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ava Bowman</title>
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ========= THEME ========= */
     :root{
       --paper:#FAF7F2;
       --sheet:#FFFEFC;
@@ -22,244 +18,151 @@
       --pill:#EFE8E2;
       --radius:18px;
       --shadow:0 12px 40px rgba(40,30,20,.06);
-
-      /* NEW: responsive page gutter for comfy edges */
-      --gutter: clamp(16px, 6vw, 40px);
-      --header-h: 64px;
     }
-
-    /* ========= BASE ========= */
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{background:var(--paper);color:var(--ink)}
-    body{
-      font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      line-height:1.6;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-    a{color:inherit;text-decoration:none}
+    body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1100px,92%);margin-inline:auto}
 
-    /* helper container (used for grids) */
-    .container{width:min(1100px, 92%);margin-inline:auto}
-
-    /* make in-page anchors avoid hiding under fixed header */
-    section{scroll-margin-top: calc(var(--header-h) + 16px)}
-
-    /* ========= HEADER ========= */
-    header{
-      position:fixed; inset:0 0 auto 0;
-      height:var(--header-h);
-      display:flex; align-items:center; justify-content:space-between;
-      padding:12px var(--gutter);
-      background:var(--paper);
-      border-bottom:1px solid var(--line);
-      z-index:999;
-    }
-    header img{height:48px;width:auto;display:block}
-
+    /* Header */
+    header{display:flex;justify-content:space-between;align-items:center;padding:16px 5%;position:fixed;top:0;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);z-index:999}
+    header img{height:48px;width:auto;margin-left:-10px;}
     .menu-toggle{cursor:pointer;display:flex;flex-direction:column;gap:6px}
-    .menu-toggle span{
-      display:block;width:26px;height:3px;background:var(--ink);border-radius:3px
-    }
-
-    nav{
-      position:absolute; top:calc(var(--header-h) + 8px);
-      right:var(--gutter);
-      background:var(--sheet);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:12px;
-      display:none;
-    }
-    nav a{display:block;padding:10px 14px;font-weight:700}
+    .menu-toggle span{display:block;width:26px;height:3px;background:var(--ink);border-radius:3px}
+    nav{display:none;position:absolute;top:64px;right:5%;background:var(--sheet);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px}
+    nav a{display:block;padding:10px 14px;font-weight:600}
     nav a:hover{background:var(--pill)}
 
-    /* ========= HERO ========= */
-    .hero{
-      padding: calc(var(--header-h) + 56px) var(--gutter) 40px;
-      text-align:center;
-    }
-    .hero h1{
-      font-size:clamp(2.8rem,6vw,4.2rem);
-      font-weight:800; letter-spacing:1px; text-transform:uppercase;
-    }
-    .hero p{
-      color:var(--muted);
-      margin:12px auto 24px;
-      max-width:650px;
-      font-size:1.15rem;
-    }
+    /* Hero with big name */
+    .hero{padding:140px 0 40px;text-align:center}
+    .hero h1{font-size:clamp(2.8rem,6vw,4.2rem);margin:0;color:var(--ink);font-weight:800;letter-spacing:1px;text-transform:uppercase}
+    .hero p{color:var(--muted);margin:12px auto 24px;max-width:650px;font-size:1.15rem}
     .hero .cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-
-    .btn{
-      padding:14px 22px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background:var(--sheet);
-      box-shadow:var(--shadow);
-      font-weight:700;
-      display:inline-block;
-    }
-    .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .btn{padding:14px 22px;border-radius:14px;border:1px solid var(--line);background:var(--sheet);box-shadow:var(--shadow);font-weight:700;display:inline-block}
+    .btn.primary{background:var(--accent);color:white;border-color:var(--accent)}
+    .btn.secondary{background:var(--sheet);color:var(--ink);border-color:var(--line)}
     .btn.secondary:hover{background:var(--pill)}
 
-    /* ========= COVER (full-bleed) ========= */
-    .cover{width:100%;max-height:520px;overflow:hidden;margin:0 0 40px}
+    /* Cover image */
+    .cover{width:100%;max-height:520px;overflow:hidden;margin-bottom:40px}
     .cover img{width:100%;height:100%;object-fit:cover;display:block}
 
-    /* ========= SECTION BASICS ========= */
-    section{padding:64px var(--gutter)}
-    .title{
-      font-size:1.6rem;text-align:center;margin-bottom:6px;
-      font-weight:800;letter-spacing:1px;text-transform:uppercase
-    }
+    /* Sections */
+    section{padding:64px 0}
+    .title{font-size:1.6rem;text-align:center;margin-bottom:6px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
     .sub{text-align:center;color:var(--muted);margin:0 0 36px}
 
-    /* ========= PRICING ========= */
-    .price-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:20px;
-      width:min(1100px,92%);
-      margin-inline:auto;
-    }
-    .block{
-      background:var(--sheet);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:24px;text-align:left
-    }
+    /* Pricing grid */
+    .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+    .block{background:var(--sheet);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;text-align:left}
     .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
     .pkg{font-size:1rem;margin:0;font-weight:800;letter-spacing:1px;text-transform:uppercase}
     .amount{font-weight:800;font-size:1.2rem}
     hr{border:0;border-top:1px solid var(--line);margin:10px 0}
-    ul{list-style:none;display:grid;gap:8px}
+    ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
     li::before{content:"• ";color:var(--accent)}
 
-    /* ========= ADD ONS (chips) ========= */
-    #addons .sub{margin-bottom:18px}
-    .addon-chips{
-      display:flex; flex-wrap:wrap; gap:12px;
-      justify-content:center; align-items:center;
-      max-width:900px; margin:0 auto;
-      padding-inline: var(--gutter); /* key: side breathing room */
-    }
-    .chip{
-      background:var(--pill);
-      padding:8px 12px;
-      border-radius:999px;
-      font-weight:700;
-      margin:4px; display:inline-block
-    }
-
-    /* ========= ABOUT ========= */
-    .about{
-      display:grid; grid-template-columns:1fr 1fr;
-      gap:24px; align-items:center;
-      width:min(1100px,92%); margin-inline:auto;
-    }
-    .about .bio{
-      background:var(--sheet);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:22px
-    }
+    /* About */
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+    .about .bio{background:var(--sheet);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
     .about .pic{
       border-radius:var(--radius);
       overflow:hidden;
       border:1px solid var(--line);
       box-shadow:var(--shadow);
-      max-width:85%; margin:auto;
-      aspect-ratio:4/5;
+      max-width:85%;
+      margin:auto;
+      aspect-ratio: 4/5; /* consistent portrait frame */
     }
-    .about img{width:100%;height:100%;object-fit:cover;display:block}
-    @media (max-width:900px){ .about{grid-template-columns:1fr} }
+    .about img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    @media (max-width:900px){.about{grid-template-columns:1fr}}
 
-    /* ========= GALLERY ========= */
-    .gallery-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:16px;
-      width:min(1100px,92%);
-      margin-inline:auto;
-    }
-    .gallery-grid img{
-      width:100%;height:100%;object-fit:cover;
-      border-radius:var(--radius);
-      border:1px solid var(--line);
-      box-shadow:var(--shadow)
+    /* Gallery */
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+    .gallery-grid img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow)}
+
+    footer{padding:28px 0;border-top:1px solid var(--line);text-align:center;color:var(--muted)}
+
+    /* Chips (existing) */
+    .chip{background:var(--pill);padding:8px 12px;border-radius:999px;font-weight:700;margin:4px;display:inline-block}
+
+    /* Add Ons: compact pill layout (original) */
+    #addons .sub{margin-bottom:18px}
+    .addon-chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:center;
+      align-items:center;
+      max-width:900px;
+      margin:0 auto;
     }
 
-    /* ========= CONTACT / FOOTER ========= */
-    #contact .actions{
-      text-align:center; display:flex; flex-direction:column;
-      gap:16px; align-items:center; width:min(900px,92%); margin-inline:auto;
+    /* >>> Add Ons: extra edge padding (new) <<< */
+    #addons{
+      padding-inline: clamp(16px, 6vw, 40px);
+      box-sizing: border-box;
     }
-    footer{
-      padding:28px var(--gutter);
-      border-top:1px solid var(--line);
-      text-align:center;color:var(--muted)
+    .addon-chips{
+      padding-inline: clamp(8px, 3vw, 24px);
+      box-sizing: border-box;
     }
-
-    /* Respect iPhone safe areas */
-    @supports (padding:max(0px)){
-      header, section, footer{
-        padding-left:  max(var(--gutter), env(safe-area-inset-left));
-        padding-right: max(var(--gutter), env(safe-area-inset-right));
+    @supports (padding: max(0px)) {
+      #addons{
+        padding-left:  max(clamp(16px, 6vw, 40px), env(safe-area-inset-left));
+        padding-right: max(clamp(16px, 6vw, 40px), env(safe-area-inset-right));
       }
     }
   </style>
 </head>
-
 <body>
-  <!-- ===== HEADER ===== -->
+  <!-- Header -->
   <header>
     <img src="artist chop.png" alt="Ava Lulu logo" />
-    <div class="menu-toggle" aria-label="Toggle menu" role="button" tabindex="0"
-         onclick="toggleMenu()" onkeydown="if(event.key==='Enter'){toggleMenu()}">
-      <span></span><span></span><span></span>
+    <div class="menu-toggle" onclick="document.querySelector('nav').style.display = document.querySelector('nav').style.display === 'block' ? 'none' : 'block'">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-    <nav id="site-nav" aria-label="Main">
-      <a href="#pricing" onclick="closeMenu()">PRICING</a>
-      <a href="#addons"  onclick="closeMenu()">ADD ONS</a>
-      <a href="#about"   onclick="closeMenu()">ABOUT ME</a>
-      <a href="#gallery" onclick="closeMenu()">GALLERY</a>
-      <a href="#contact" onclick="closeMenu()">CONTACT</a>
+    <nav>
+      <a href="#pricing">PRICING</a>
+      <a href="#addons">ADD ONS</a>
+      <a href="#about">ABOUT ME</a>
+      <a href="#gallery">GALLERY</a>
+      <a href="#contact">CONTACT</a>
     </nav>
   </header>
 
-  <!-- ===== HERO ===== -->
+  <!-- Hero -->
   <section class="hero">
-    <h1>Ava Lulu Photo</h1>
-    <p>
-      <strong>Let me capture your treasured memories and turn them into timeless photographs you’ll cherish forever.</strong>
-      Each session is about real moments—warm light, true color, and natural emotion you can relive for years.
-    </p>
-    <div class="cta">
-      <a class="btn primary" href="#pricing">View Packages</a>
-      <a class="btn secondary" href="#contact">Book Now</a>
+    <div class="container">
+      <h1>Ava Lulu Photo</h1>
+      <p>Let me capture your treasured memories and turn them into timeless photographs you’ll cherish forever</p>
+      <div class="cta">
+        <a class="btn primary" href="#pricing">View Packages</a>
+        <a class="btn" href="#contact">Book Now</a>
+      </div>
     </div>
   </section>
 
-  <!-- ===== COVER ===== -->
-  <div class="cover" aria-hidden="true">
-    <img src="avacochran241003-0322.jpeg" alt="" />
+  <!-- Cover Image -->
+  <div class="cover">
+    <img src="avacochran241003-0322.jpeg" alt="Large cover photo" />
   </div>
 
-  <!-- ===== PRICING ===== -->
-  <section id="pricing" aria-labelledby="pricing-title">
-    <h2 class="title" id="pricing-title">Pricing</h2>
+  <!-- Pricing -->
+  <section id="pricing">
+    <h2 class="title">Pricing</h2>
     <p class="sub">Each session includes editing and a gallery of high-resolution images.</p>
-
-    <div class="price-grid">
+    <div class="container price-grid">
       <article class="block">
-        <div class="head">
-          <h3 class="pkg">Individual</h3>
-          <div class="amount">$85</div>
-        </div>
+        <div class="head"><h3 class="pkg">Individual</h3><div class="amount">$85</div></div>
         <hr>
         <ul>
           <li>1 photo session (45 minutes)</li>
@@ -267,12 +170,8 @@
           <li>30 digital photos</li>
         </ul>
       </article>
-
       <article class="block">
-        <div class="head">
-          <h3 class="pkg">Couples</h3>
-          <div class="amount">$100</div>
-        </div>
+        <div class="head"><h3 class="pkg">Couples</h3><div class="amount">$100</div></div>
         <hr>
         <ul>
           <li>1 photo session (45 minutes)</li>
@@ -280,12 +179,8 @@
           <li>40 digital photos</li>
         </ul>
       </article>
-
       <article class="block">
-        <div class="head">
-          <h3 class="pkg">Family</h3>
-          <div class="amount">$175</div>
-        </div>
+        <div class="head"><h3 class="pkg">Family</h3><div class="amount">$175</div></div>
         <hr>
         <ul>
           <li>Groups of 6 or less</li>
@@ -294,12 +189,8 @@
           <li>50 digital photos</li>
         </ul>
       </article>
-
       <article class="block">
-        <div class="head">
-          <h3 class="pkg">Wedding</h3>
-          <div class="amount">$TBD</div>
-        </div>
+        <div class="head"><h3 class="pkg">wedding</h3><div class="amount">$TBD</div></div>
         <hr>
         <ul>
           <li>Message me for my wedding packages</li>
@@ -311,12 +202,11 @@
     </div>
   </section>
 
-  <!-- ===== ADD ONS ===== -->
-  <section id="addons" aria-labelledby="addons-title">
-    <h2 class="title" id="addons-title">Add Ons</h2>
-    <p class="sub">Message me with inquiries about adding or selecting any of the following options.</p>
-
-    <div class="addon-chips">
+  <!-- Add Ons (chip layout) -->
+  <section id="addons">
+    <h2 class="title">Add Ons</h2>
+    <p class="sub">Message me with inquires about adding or selecting any of the following options</p>
+    <div class="container addon-chips">
       <span class="chip">Extra time</span>
       <span class="chip">Dance photos</span>
       <span class="chip">Second location</span>
@@ -325,76 +215,67 @@
     </div>
   </section>
 
-  <!-- ===== ABOUT ===== -->
-  <section id="about" aria-labelledby="about-title">
-    <div class="about">
+  <!-- About -->
+  <section id="about">
+    <div class="container about">
       <div class="bio">
-        <h2 class="title" id="about-title" style="text-align:left">About Me</h2>
-        <p>
-          Hi, I’m Ava Bowman! I’m a graphic designer who has always loved photography, and I truly enjoy capturing a moment.
-          I’m passionate about creating natural, timeless photos that feel warm and personal. Whether it’s portraits, couples,
-          families, or even product photography, I can create anything you need. My goal is to make images you’ll treasure forever.
-        </p>
+        <h2 class="title" style="text-align:left">About Me</h2>
+        <p>Hi, I’m Ava Bowman! I’m a graphic designer who has always loved photography, and I truly enjoy capturing a moment. I’m passionate about creating natural, timeless photos that feel warm and personal. Whether it’s portraits, couples, families, or even product photography, anything you need! My goal is to create images you’ll treasure forever.</p>
       </div>
-
       <div class="pic">
-        <img src="IMG_5894.jpeg" alt="Ava Bowman holding a camera in the mountains" />
+        <img src="IMG_5894.jpeg" alt="Ava Bowman holding a camera in the mountains"/>
       </div>
     </div>
   </section>
 
-  <!-- ===== GALLERY ===== -->
-  <section id="gallery" aria-labelledby="gallery-title">
-    <h2 class="title" id="gallery-title">Gallery</h2>
+  <!-- Gallery -->
+  <section id="gallery">
+    <h2 class="title">Gallery</h2>
     <p class="sub">Some moments I’ve captured</p>
-
-    <div class="gallery-grid">
-      <img src="electraXrob.jpeg" alt="Electra and Rob portrait">
-      <img src="melaniewedding.jpeg" alt="Melanie’s wedding table details">
-      <img src="konXwav.jpeg" alt="Konnor and Wav in front of their house">
-      <img src="leaningtowerofpisa.jpeg" alt="Leaning Tower of Pisa">
-      <img src="weddingfilm.jpeg" alt="Mel and Sam wedding moment">
-      <img src="flagfootball.jpeg" alt="Flag football catch">
-      <img src="avacochran241003-0300-2.jpeg" alt="Mercedes emblem detail">
+    <div class="container gallery-grid">
+      <img src="electraXrob.jpeg" alt="photo of electra and rob">
+      <img src="melaniewedding.jpeg" alt="photo of melanies wedding tables">
+      <img src="konXwav.jpeg" alt="photo of konnor and wav infront of their house">
+      <img src="leaningtowerofpisa.jpeg" alt="leaning tower of pisa">
+      <img src="weddingfilm.jpeg" alt="mel and sam">
+      <img src="flagfootball.jpeg" alt="flag fotball catch">
+      <img src="avacochran241003-0300-2.jpeg" alt="Mercedes emblem photo">
       <img src="acochran241013-0376.jpeg" alt="Bright bouquet of flowers against blue sky">
-      <img src="avacochran250208-111_1133-2.jpg" alt="Group of friends dressed up at an event">
+      <img src="avacochran250208-111_1133-2.jpg" alt="Group of friends dressed up at event">
       <img src="111.AvaLulu-64.jpg" alt="Portrait of a young woman in a field">
-      <img src="avacochran241111-111_0988.jpg" alt="Black and white portrait of a woman with a camera">
-      <img src="111.AvaLulu-81.jpg" alt="Portrait with mountain backdrop">
+      <img src="avacochran241111-111_0988.jpg" alt="Black and white portrait of woman with camera">
+      <img src="111.AvaLulu-81.jpg" alt="Portrait of a young woman with mountains in the background">
     </div>
   </section>
 
-  <!-- ===== CONTACT ===== -->
-  <section id="contact" aria-labelledby="contact-title">
-    <h2 class="title" id="contact-title">Contact</h2>
-    <p class="sub">
-      Click below to reach out through email or Instagram.<br>
-      Tell me which package you’re interested in and I’ll get back to you as soon as possible.
-    </p>
-
-    <div class="actions">
+  <!-- Contact -->
+  <section id="contact">
+    <h2 class="title">Contact</h2>
+    <p class="sub">Click below to reach out through email or Instagram<br>
+      Let me know what kind of package you're inquiring about!<br>
+      & I will get back to you as soon as possible!</p>
+    <div class="container" style="text-align:center; display:flex; flex-direction:column; gap:16px; align-items:center">
       <a class="btn primary" href="mailto:Avalulu88@gmail.com">Email: Avalulu88@gmail.com</a>
-      <a class="btn secondary" href="https://instagram.com/avalulubowman" target="_blank" rel="noopener">Instagram: @avalulubowman</a>
+      <a class="btn secondary" href="https://instagram.com/avalulubowman" target="_blank">Instagram: @avalulubowman</a>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- Footer -->
   <footer>
     <p>© <span id="yr"></span> Ava Lulu Photo</p>
   </footer>
 
   <script>
-    // Footer year
+    // Update footer year
     document.getElementById('yr').textContent = new Date().getFullYear();
 
-    // Mobile menu controls
-    const nav = document.getElementById('site-nav');
-    function toggleMenu(){ nav.style.display = (nav.style.display === 'block') ? 'none' : 'block'; }
-    function closeMenu(){ nav.style.display = 'none'; }
-
-    // Reset scroll to top on reload
-    window.onbeforeunload = () => { window.scrollTo(0, 0); };
-    window.onload = () => { window.scrollTo(0, 0); };
+    // Always reset scroll to top on reload
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
+    window.onload = function () {
+      window.scrollTo(0, 0);
+    };
   </script>
 </body>
 </html>
